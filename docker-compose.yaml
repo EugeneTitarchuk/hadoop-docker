@@ -1,0 +1,64 @@
+name: hadoop-cluster
+
+x-worker-common-config:
+  &worker-common-config
+  image: apache/hadoop:3.4.1
+  env_file:
+      - ./config
+  volumes:
+    - ./config:/hadoop-config
+  depends_on:
+    - namenode
+    - resourcemanager
+  command: >
+    bash -c "
+      hdfs datanode &
+      yarn nodemanager &
+      tail -f /dev/null
+    "
+    
+services:
+  namenode:
+    image: apache/hadoop:3.4.1
+    container_name: namenode
+    hostname: namenode
+    env_file:
+      - ./config
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    volumes:
+      - ./config:/hadoop-config
+    command: >
+      bash -c "
+        hdfs namenode -format -force &&
+        hdfs namenode
+      "
+
+  resourcemanager:
+    image: apache/hadoop:3.4.1
+    container_name: resourcemanager
+    hostname: resourcemanager
+    env_file:
+      - ./config
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./config:/hadoop-config
+    command: >
+      bash -c "yarn resourcemanager"
+
+  worker-1:
+    container_name: worker-1
+    hostname: worker-1
+    <<: *worker-common-config
+
+  worker-2:
+    container_name: worker-2
+    hostname: worker-2
+    <<: *worker-common-config
+
+  worker-3:
+    container_name: worker-3
+    hostname: worker-3
+    <<: *worker-common-config

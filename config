@@ -1,0 +1,4 @@
+CORE-SITE.XML_fs.defaultFS=hdfs://namenode:9000
+HDFS-SITE.XML_dfs.replication=2
+MAPRED-SITE.XML_mapreduce.framework.name=yarn
+YARN-SITE.XML_yarn.resourcemanager.hostname=resourcemanager
