@@ -31,7 +31,7 @@ services:
       - ./config:/hadoop-config
     command: >
       bash -c "
-        hdfs namenode -format -force &&
+        hdfs namenode -format -clusterID CID-2947af0f-b46f-497c-8152-2c9ec196a3d4 -force &&
         hdfs namenode
       "
 
