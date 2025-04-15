@@ -35,7 +35,7 @@ cd hadoop-docker-cluster
 ### 2. Build the cluster
 
 ```bash
-docker-compose up -d --scale worker=3
+docker-compose up -d
 ```
 
 ### 3. Access Web Interfaces
