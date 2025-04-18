@@ -28,14 +28,14 @@ This repository provides a lightweight, multi-node Hadoop cluster using the offi
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-user/hadoop-docker-cluster.git
-cd hadoop-docker-cluster
+git clone https://github.com/EugeneTitarchuk/hadoop-docker.git
+cd hadoop-docker
 ```
 
 ### 2. Build the cluster
 
 ```bash
-docker-compose up -d --scale worker=3
+docker-compose up -d
 ```
 
 ### 3. Access Web Interfaces
